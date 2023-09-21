@@ -51,7 +51,6 @@ def check_highscore():
 
 root = Tk()
 root.title("Hangman GUI")
-root.geometry("650x400")
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
 root.score = -1

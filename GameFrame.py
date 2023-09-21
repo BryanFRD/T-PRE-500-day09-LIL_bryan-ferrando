@@ -13,7 +13,7 @@ class GameFrame(Frame):
   def __init__(self, parent):
     super().__init__(parent)
     self.parent = parent
-    label = Label(self, text="Game Frame")
+    label = Label(self, text="Hangman")
     label.grid(row=0, column=0, columnspan=5)
     self.score = Label(self, text="Score: 0")
     self.score.grid(row=0, column=10, columnspan=2)
