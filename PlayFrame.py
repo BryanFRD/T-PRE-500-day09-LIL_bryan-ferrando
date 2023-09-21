@@ -30,7 +30,7 @@ class PlayFrame(Frame):
     dev.grid(row=4, column=1)
     quit = Button(self, text="Quit", command=lambda: exit(0))
     quit.grid(row=4, column=2)
-    
+  
   def execute(self):
     if not self.parent.score == -1:
       self.score_label.configure(text=f"Score: {self.parent.score}")

@@ -3,6 +3,7 @@ import random
 import unicodedata
 from os.path import exists
 from tkinter import *
+import requests
 
 word_list: list = None
 word: str = "" 
@@ -10,19 +11,24 @@ guess: list = []
 high_score: int = -1
 
 def generate_word():
-  w = word_list[random.randint(0, len(word_list))]
+  w = ""
+  if word_list != None:
+    w = word_list[random.randint(0, len(word_list))]
+  else:
+    w = requests.get("https://random-word-api.herokuapp.com/word").json()[0]
+  
   return normalize(w)
 
 def normalize(str):
   return "".join(c for c in unicodedata.normalize("NFD", str) if unicodedata.category(c) != "Mn").upper()
 
 if len(sys.argv[1:]) == 0 or not exists(sys.argv[1]):
-  print("You must include a .txt file")
-  exit()
+  print("Default word list")
     
-f = open(sys.argv[1])
-word_list = f.read().split(", ")
-f.close()
+if len(sys.argv) > 1:
+  f = open(sys.argv[1])
+  word_list = f.read().split(", ")
+  f.close()
 
 if not exists("high-score.txt"):
   hsf = open("high-score.txt", 'w+')
